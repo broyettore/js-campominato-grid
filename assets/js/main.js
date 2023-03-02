@@ -4,6 +4,7 @@
  * FUNZIONI
  *************/
 
+
 function createElement(htmlElement, className) {
     const element = document.createElement(htmlElement);
     element.classList.add(className);
@@ -27,12 +28,17 @@ function showColour(element) {
  *************/
 
 const ctnBoard = document.querySelector(".game-board");
+const selectMode = document.getElementById("difficulty");
+let selectModeValue = selectMode.value;
+const playBtn = document.querySelector(".play");
+let cellNumber = 100;
 
-for (let i = 1; i <= 100; i++) {
+for (let i = 1; i <= cellNumber; i++) {
     const createdElement = createElement("div", "game-cell");
     ctnBoard.append(createdElement);
     createdElement.innerText = i;
 }
 
-showColour(".game-cell");
 
+
+showColour(".game-cell");
