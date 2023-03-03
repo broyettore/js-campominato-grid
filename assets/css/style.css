@@ -73,7 +73,8 @@ header .game-options {
     display: flex;
 }
 
-header .mode {
+header .mode,
+header button:last-child {
     margin: 0 8px;
 }
 
@@ -108,11 +109,25 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: calc(100% / 10);
-    height: calc(100% / 10);
     border: 1px solid #000;
     cursor: pointer;
 }
+
+.cell-100 {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.cell-81 {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.cell-49 {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
 
 /****** FOOTER *******/
 

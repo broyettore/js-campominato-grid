@@ -5,9 +5,10 @@
  *************/
 
 // function to create an element with a class
-function createElement(htmlElement, className) {
+function createElement(htmlElement, className, innerContent) {
     const element = document.createElement(htmlElement);
     element.classList.add(className);
+    element.innerText = innerContent;
 
     return element;
 }
@@ -22,23 +23,57 @@ function showColour(element) {
                 console.log(element.innerText);
             })
         })
-    };
+};
+
+// Reset function
+function resetGame() {
+    ctnBoard.innerHTML= "";
+}
+
+// function to create the game board
+function createBoard (cellNumber) {
+        for (let i = 1; i <= cellNumber; i++) {
+            const createdElement = createElement("div", "game-cell", i);
+            createdElement.classList.add("cell-"+`${cellNumber}`)
+            ctnBoard.append(createdElement);
+    }
+    showColour(".game-cell");
+}
+
+function campoMinato() {
+    resetGame();
+
+    const selectMode = document.getElementById("difficulty"); // selects html select
+    let selectModeValue = selectMode.value; // selects html select value
+
+    let cellNumber;
+    let level = selectModeValue;
+
+    switch(level) {
+
+        case "medium" :
+            cellNumber = 81;
+            break;
+
+        case "hard" :
+            cellNumber = 49;
+            break;
+
+        default:
+            cellNumber = 100;
+            break;
+    }
+
+    createBoard(cellNumber);
+}
 
 /*************
  * MAIN
  *************/
 
 const ctnBoard = document.querySelector(".game-board"); // selects container
-const selectMode = document.getElementById("difficulty"); // selects html select
-let selectModeValue = selectMode.value; // selects html select value
 const playBtn = document.querySelector(".play"); // selects play button
-let cellNumber = 100;
+const resetBtn = document.querySelector(".reset"); // selects play button
 
-for (let i = 1; i <= cellNumber; i++) {
-    const createdElement = createElement("div", "game-cell");
-    ctnBoard.append(createdElement);
-    createdElement.innerText = i;
-}
-
-
-showColour(".game-cell");
+playBtn.addEventListener('click', campoMinato); // starts game
+resetBtn.addEventListener("click", resetGame); // resets game
